@@ -27,4 +27,4 @@ Legal usage examples:
 - ./covidata.sh -r compare 10 2020-01 2020-03 data.csv result2.csv result.csv
 
 
-![alt text](https://raw.githubusercontent.com/taylorfergusson/covid-analysis/master/demovideo.mp4 "Demo Example Video")
+![alt text](https://raw.githubusercontent.com/taylorfergusson/covid-analysis/master/codedemo.gif "Demo Example Gif")
