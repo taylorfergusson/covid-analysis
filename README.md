@@ -44,10 +44,18 @@ Make sure the data.csv file is present in the directory where the script is run.
 ```
 
 ### Legal Usage Examples
-- ./covidata.sh get 35 data.csv result.csv
-- ./covidata.sh -r get 35 2020-01 2020-03 data.csv result.csv
-- ./covidata.sh compare 10 data.csv result2.csv result.csv
-- ./covidata.sh -r compare 10 2020-01 2020-03 data.csv result2.csv result.csv
+```
+./covidata.sh get 35 data.csv result.csv
+```
+```
+./covidata.sh -r get 35 2020-01 2020-03 data.csv result.csv
+```
+```
+./covidata.sh compare 10 data.csv result2.csv result.csv
+```
+```
+./covidata.sh -r compare 10 2020-01 2020-03 data.csv result2.csv result.csv
+```
 
 ## Examples
 
