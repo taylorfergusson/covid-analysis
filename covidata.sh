@@ -20,12 +20,12 @@ getRows(){
 
 	if [ -f fileWithM.csv ]
         then
-                rm fileWithM.csv
+            rm fileWithM.csv
         fi
 
 	if [ -f $pasteFile ]
         then
-                rm $pasteFile
+            rm $pasteFile
         fi
 
 	if grep -q ^$id $currentFile
@@ -51,10 +51,10 @@ computeStats(){
 		conf=`cat $currentFile | awk 'BEGIN {FS=","; conf=0} {conf+=$6} END{print conf}'`
 		avgconf=$(( conf / rowcount ))
 
-        	deaths=`cat $currentFile | awk 'BEGIN {FS=","; deaths=0} {deaths+=$8} END{print deaths}'`
-        	avgdeaths=$(( deaths / rowcount ))
+        deaths=`cat $currentFile | awk 'BEGIN {FS=","; deaths=0} {deaths+=$8} END{print deaths}'`
+        avgdeaths=$(( deaths / rowcount ))
 
-        	tests=`cat $currentFile | awk 'BEGIN {FS=","; tests=0} {tests+=$11} END{print tests}'`
+        tests=`cat $currentFile | awk 'BEGIN {FS=","; tests=0} {tests+=$11} END{print tests}'`
 		avgtests=$(( tests / rowcount ))
 	fi
 }
@@ -81,7 +81,7 @@ getDateRows(){
 
         if [[ -f $fileSTATS ]]
         then
-                rm $fileSTATS
+            rm $fileSTATS
         fi 
 	
 	if [[ -f awkOutput.csv ]]
@@ -93,7 +93,7 @@ getDateRows(){
 	do
 		if [[ ${#startDay} -lt 2 ]]
 		then
-                        newStartDate=$startYear-$startMonth-0$startDay
+            newStartDate=$startYear-$startMonth-0$startDay
 		else
 			newStartDate=$startYear-$startMonth-$startDay
 		fi
@@ -115,7 +115,7 @@ getDateRows(){
 
 			endDay="31"
 
-              		:> awkOutput.csv
+            :> awkOutput.csv
 
 		elif [[ $startDay -eq "31" ]]
 		then
@@ -138,7 +138,7 @@ getDateRows(){
 				startYear=$(expr $startYear + 1)
 			fi
 
-                        :> awkOutput.csv
+            :> awkOutput.csv
 		fi
 
                 startDay=$(expr $startDay + 1)
@@ -163,7 +163,7 @@ scriptSyntax="$0 $*"
 avgTitles="rowcount,avgconf,avgdeaths,avgtests"
 diffTitles="diffcount,diffavgconf,diffavgdeath,diffavgtests"
 
-if [[ $1 == "get" ]] #Get procedure
+if [[ $1 == "get" ]] # Get procedure: Collects all data for a provided province given the province ID.
 then
 	if [[ $# != 4 ]]
 	then
@@ -183,14 +183,15 @@ then
 		rm inputFileIDs.csv
 	fi
 
-elif [[ $1 == "compare" ]] #Compare procedure
+elif [[ $1 == "compare" ]] # Compare procedure: Compares the collected data of a province with another province's data.
+							# Uses a previously-computed comp (compare) results CSV file.
 then
 	if [[ $# != 5 ]]
 	then
 		errorMsg "Wrong number of arguments" "$scriptSyntax"
 	elif [ ! -f $3 ]
         then
-                errorMsg "Input file name does not exist" "$scriptSyntax"
+        	errorMsg "Input file name does not exist" "$scriptSyntax"
 	else
 		id=$2
 		inputFile=$3
@@ -205,7 +206,7 @@ then
 		awk '/rowcount,avgconf,avgdeaths,avgtests/ {exit} {print}' $compFile >> $outputFile
 		
 		echo $avgTitles >> $outputFile
-                echo "$rowcount,$avgconf,$avgdeaths,$avgtests" >> $outputFile
+        echo "$rowcount,$avgconf,$avgdeaths,$avgtests" >> $outputFile
 		
 		lastCompLine=`sed -n '$p' $compFile`
 		
@@ -224,49 +225,50 @@ then
 		rm inputFileIDs.csv
 	fi
 
-elif [[ $1 == "-r" ]] && [[ $2 == "get" ]]
+elif [[ $1 == "-r" ]] && [[ $2 == "get" ]] # Get procedure with -r: Collects provincial data within a provided date range
 then
-        if [[ $# != 7 ]]
-        then
-                errorMsg "Wrong number of arguments" "$scriptSyntax"
-        else
-                id=$3
+	if [[ $# != 7 ]]
+	then
+		errorMsg "Wrong number of arguments" "$scriptSyntax"
+	else
+		id=$3
 		startDate=$4
 		endDate=$5
-                inputFile=$6
-                outputFile=$7
+		inputFile=$6
+		outputFile=$7
 
 		getRows "$inputFile" "inputFileIDs.csv"
 		getDateRows "inputFileIDs.csv" "inputFileIDsDates.csv" "inputFileSTATS.csv"
 		cat inputFileIDsDates.csv > $outputFile
-        	echo $avgTitles >> $outputFile
+		echo $avgTitles >> $outputFile
 		cat inputFileSTATS.csv >> $outputFile
 		rm inputFileIDs.csv inputFileIDsDates.csv inputFileSTATS.csv awkOutput.csv
+
 	fi
 
-elif [[ $1 == "-r" ]] && [[ $2 == "compare" ]]
+elif [[ $1 == "-r" ]] && [[ $2 == "compare" ]] # Compare procedure with -r: Collects provincial data within a provided date range
 then
-        if [[ $# != 8 ]]
-        then
-                errorMsg "Wrong number of arguments" "$scriptSyntax"
-        else
-                id=$3
-                startDate=$4
-                endDate=$5
-                inputFile=$6
-                outputFile=$7
+	if [[ $# != 8 ]]
+	then
+		errorMsg "Wrong number of arguments" "$scriptSyntax"
+	else
+		id=$3
+		startDate=$4
+		endDate=$5
+		inputFile=$6
+		outputFile=$7
 		compFile=$8
-                
-                getRows "$inputFile" "inputFileIDs.csv"
+			
+		getRows "$inputFile" "inputFileIDs.csv"
 		getDateRows "inputFileIDs.csv" "inputFileIDsDates.csv" "inputFileSTATS.csv"
 		getDateRows "$compFile" "compFileIDsDates.csv" "compFileSTATS.csv"
 		
 		counter=1
 		
 		if [[ -f diffSTATS.csv ]]
-                then
-                	rm diffSTATS.csv
-                fi
+		then
+			rm diffSTATS.csv
+		fi
 
 		halfMonths=`cat inputFileSTATS.csv | awk 'BEGIN {FS=","} {count++} END{print count}'`
 		
@@ -283,8 +285,8 @@ then
 			
 			compValuesAndDiff "$currentCompLine"		
 
-                	diffValues="echo $diffcount,$diffavgconf,$diffavgdeaths,$diffavgtests"
-                	$diffValues >> diffSTATS.csv
+			diffValues="echo $diffcount,$diffavgconf,$diffavgdeaths,$diffavgtests"
+			$diffValues >> diffSTATS.csv
 
 			counter=$(expr $counter + 1)
 
