@@ -1,2 +1,13 @@
-# covid-analysis
- Bash script that lets the user get and compare provincial COVID-19 info from a CSV dataset
+# // covid-analysis
+
+Bash script that allows the user to get and compare provincial COVID-19 info from a CSV dataset
+
+- Save to-do items to one of the default folders (Home, Today, Week) or create a custom folder.
+- View to-do details, make an edit, delete and check off items.
+- Three priority levels to assign a to-do item.
+- Number of remaining unchecked items displayed by project name, total unchecked items displayed by Home title.
+- Pinterest style notes section. Dynamically add, remove or edit notes.
+- Fully responsive.
+- Data saved to local storage.
+
+![alt text](https://raw.githubusercontent.com/bscottnz/todo/master/todo.png "App Preview")
