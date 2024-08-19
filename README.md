@@ -54,7 +54,7 @@ Ensure that the data.csv file is in the directory where the script is run.
 ## Examples
 
 ### Terminal Example
-![Demo Example Gif](https://raw.githubusercontent.com/taylorfergusson/covid-analysis/master/inputdemo.gif "Demo Example Gif")
+![Demo Example Gif](https://raw.githubusercontent.com/taylorfergusson/covid-analysis/master/terminal-example.gif "Demo Example Gif")
 
 
 ### Detailed Example
@@ -77,7 +77,7 @@ The script will compare the data extracted in the first step with the newly comp
 
 ## Credits
 
-- CSV data sourced from Government of Canada Open Data.
+CSV data sourced from Government of Canada.
 
 ## Contact
 
