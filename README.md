@@ -14,9 +14,11 @@ This project provides a tool for analyzing COVID-19 data specific to Canadian pr
 
 To set up the script, follow these steps:
 
+'''
 git clone https://github.com/taylorfergusson/covid-analysis.git
 cd covid-analysis
 chmod +x covidata.sh
+'''
 
 Make sure the data.csv file is present in the directory where the script is run.
 
@@ -37,7 +39,9 @@ Make sure the data.csv file is present in the directory where the script is run.
 - comparefile: CSV filename of previously generated results, will be compared to new province.
 
 ### Script Syntax
-- ./covidata.sh -r procedure id startDate endDate inputFile outputFile compareFile
+'''
+./covidata.sh -r procedure id startDate endDate inputFile outputFile compareFile
+'''
 
 ### Legal Usage Examples
 - ./covidata.sh get 35 data.csv result.csv
@@ -55,13 +59,17 @@ Make sure the data.csv file is present in the directory where the script is run.
 
 For example, running the following command:
 
+'''
 ./covidata.sh -r get 35 2020-01 2020-03 data.csv result.csv
+'''
 
 Will extract data for province ID 35 from January 2020 to March 2020, compute the average confirmed cases, deaths, and tests, and save the results in result.csv.
 
 If you then run:
 
+'''
 ./covidata.sh -r compare 35 2020-01 2020-03 data.csv result.csv old_results.csv
+'''
 
 The script will compare the data extracted in the first step with the data in old_results.csv, showing the differences in row count, average confirmed cases, deaths, and tests.
 
