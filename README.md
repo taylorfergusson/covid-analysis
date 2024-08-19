@@ -6,10 +6,10 @@ Script syntax:
 ./covidata.sh -r procedure id startDate endDate inputFile outputFile compareFile
 
 Legal usage examples:
--./covidata.sh get 35 data.csv result.csv
--./covidata.sh -r get 35 2020-01 2020-03 data.csv result.csv
--./covidata.sh compare 10 data.csv result2.csv result.csv
--./covidata.sh -r compare 10 2020-01 2020-03 data.csv result2.csv result.csv
+- ./covidata.sh get 35 data.csv result.csv
+- ./covidata.sh -r get 35 2020-01 2020-03 data.csv result.csv
+- ./covidata.sh compare 10 data.csv result2.csv result.csv
+- ./covidata.sh -r compare 10 2020-01 2020-03 data.csv result2.csv result.csv
 
 - Save to-do items to one of the default folders (Home, Today, Week) or create a custom folder.
 - View to-do details, make an edit, delete and check off items.
